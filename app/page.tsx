@@ -1,8 +1,5 @@
 
-import { Button } from "@/components/ui/button"
 import Image from "next/image"
-import GoogleIcon from "@/public/google.webp"
-// import dashboardImage from "./images/dash-brain-c.webp"
 import storeNotes from "./images/store-all-notes-c.webp"
 import sementicImage from "./images/semantic-search.webp"
 import imageTagging from "./images/image-tagging-c.webp"
@@ -17,6 +14,7 @@ import { Globe } from "@/components/magicui/globe"
 import { Meteors } from "@/components/magicui/meteors"
 import { BentoDemo } from "@/components/custom/bento"
 import { FeatureList } from "@/components/custom/feature-notifiaction"
+import SignInBtn from "@/components/custom/sign-btn"
 
 const content = [{
   title: "Store Every Thought",
@@ -79,11 +77,8 @@ export default function Home() {
           <p className="text-xl text-gray-600 mb-10">
             Effortlessly store, recall, and connect all your knowledge with Brain
           </p>
-          <Button size="lg" className="h-10 scale-95 group hover:scale-100 px-3 gap-1 bg-white hover:bg-gray-50 hover:shadow-lg transition ease-in-out text-black border rounded-xl border-gray-300 shadow-md">
-            <Image src={GoogleIcon} alt="Google Logo" width={32} height={32} className="scale-105" />
-            Continue with Google
-          </Button>
-          <div className="mt-3">
+          <SignInBtn/>
+          <div className="pt-5 pb-5">
             <div className="relative flex h-[40px] md:h-[100px] w-full flex-col items-center justify-center overflow-hidden">
               <Meteors number={12} />
               <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-5xl md:text-8xl font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10">
@@ -91,7 +86,7 @@ export default function Home() {
               </span>
             </div>
           </div>
-          <Globe className="top-[23rem] md:top-[20.5rem] overflow-hidden" />
+          <Globe className="top-[28rem] md:top-[22.5rem] overflow-hidden" />
         </section>
         <div className="w-full flex justify-center border border-dashed border-b-0 bg-background relative">
           <BentoDemo />

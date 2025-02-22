@@ -7,7 +7,7 @@ import { ThemeProvider } from "next-themes"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Brain - Your Personal Knowledge Vault",
+  title: "Orbit - Your Personal Knowledge Vault",
   description: "Effortlessly store, recall, and connect all your knowledge with Brain",
 }
 
@@ -17,11 +17,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressContentEditableWarning className="dark" style={{
-      colorScheme:"dark"
-    }}>
+    <html lang="en" suppressContentEditableWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" enableSystem defaultTheme="dark">
+        <ThemeProvider attribute="class" defaultTheme="dark">
           {children}
         </ThemeProvider>
       </body>

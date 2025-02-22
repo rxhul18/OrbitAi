@@ -93,16 +93,15 @@ export default function Home() {
           </div>
           <Globe className="top-[23rem] md:top-[20.5rem] overflow-hidden" />
         </section>
-        <div className="w-full flex justify-center border border-dashed bg-background relative">
+        <div className="w-full flex justify-center border border-dashed border-b-0 bg-background relative">
           <BentoDemo />
         </div>
-        <div className="w-full flex justify-center border border-dashed bg-background relative">
+        <div className="w-full flex justify-center border border-dashed border-y-0 bg-background relative overflow-hidden">
           <FeatureList />
         </div>
         <section className="border border-dashed border-b-0 relative">
           <div className=" border border-dashed border-y-0 container items-center mx-auto px-4 text-center pt-16 md:py-24 md:pb-10 pb-16 bg-gradient-to-b from-gray-50 dark:from-background from-90% to-[#cdd7e2] dark:to-background to-1%">
             <h2 className="text-4xl md:text-[2.7rem] font-serif mb-3 text-[#334155] dark:text-white font-extralight tracking-tight">Works like your brain. Does more.</h2>
-
             {content.map((item, index) => (
               <>
                 <div className="flex relative flex-col md:flex-row-reverse select-none rounded-3xl bg-black dark:bg-primary-foreground dark:border dark:shadow-xl dark lg:max-w-[70%] text-white mx-auto my-16" key={index}>

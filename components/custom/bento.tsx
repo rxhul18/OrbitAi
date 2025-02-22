@@ -1,8 +1,10 @@
-import { CalendarIcon, FileTextIcon } from "@radix-ui/react-icons";
+import { FileTextIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 import { Marquee } from "../magicui/marquee";
 import { BentoCard, BentoGrid } from "../magicui/bento-grid";
 import { FeatureList } from "./feature-notifiaction";
+import { Lightbulb, Share2Icon } from "lucide-react";
+import { AnimatedBeamMultipleOutputDemo } from "./AnimatedBeamMultipleOutputDemo";
 
 const files = [
   {
@@ -64,19 +66,25 @@ const features = [
     ),
   },
   {
-    Icon: CalendarIcon,
-    name: "Calendar",
-    description: "Use the calendar to filter your files by date.",
+    Icon: Lightbulb,
+    name: "Features",
+    description: "We have a lot of features to help you get started.",
     className: "col-span-3 lg:col-span-1",
     href: "#",
     cta: "Learn more",
     background: (
       <FeatureList />
-      // <Calendar
-      //   mode="single"
-      //   selected={new Date(2022, 4, 11, 0, 0, 0)}
-      //   className="absolute right-0 top-10 origin-top scale-75 rounded-md border transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] group-hover:scale-90"
-      // />
+    ),
+  },
+  {
+    Icon: Share2Icon,
+    name: "Integrations",
+    description: "Supports 100+ integrations and counting.",
+    href: "#",
+    cta: "Learn more",
+    className: "col-span-3 lg:col-span-3",
+    background: (
+      <AnimatedBeamMultipleOutputDemo className="absolute right-2 top-4 h-[300px] border-none transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_10%,#000_100%)] group-hover:scale-105" />
     ),
   },
 ];

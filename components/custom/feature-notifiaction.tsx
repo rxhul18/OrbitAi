@@ -100,7 +100,7 @@ export function FeatureList({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "absolute right-0 top-10 origin-top scale-75 rounded-md transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] group-hover:scale-90",
+        "absolute right-4 md:right-0 top-10 origin-top scale-75 rounded-md transition-all duration-300 ease-out [mask-image:linear-gradient(to_top,transparent_40%,#000_100%)] group-hover:scale-90",
         className,
       )}
     >

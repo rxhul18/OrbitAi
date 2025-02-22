@@ -1,8 +1,7 @@
 {
-  "lockfileVersion": 1,
+  "lockfileVersion": 0,
   "workspaces": {
     "": {
-      "name": "orbitai",
       "dependencies": {
         "@next/font": "^14.2.15",
         "@radix-ui/react-dialog": "^1.1.6",

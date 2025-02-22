@@ -1,9 +1,8 @@
 import React from 'react'
 import Link from "next/link"
 import { Button } from '../ui/button'
-import { Bot, /*Images, LucideUnlink,*/ Pencil } from 'lucide-react'
+import { Bot, Pencil } from 'lucide-react'
 import { SidebarTrigger } from '../ui/sidebar'
-import ThemeToggle from './theme-toggle'
 
 function Navbar() {
     return (
@@ -16,9 +15,6 @@ function Navbar() {
                         </div>
                         <span className="text-xl font-semibold">Brain</span>
                     </Link>
-                    <div className="flex items-center gap-4">
-                        <ThemeToggle />
-                    </div>
                 </nav>
             </header>
         </div>
@@ -40,13 +36,7 @@ export function SignInNavbar() {
                         </Link>
                     </div>
                     <div className="flex items-center gap-4">
-                        {/* <Button variant="outline" size={"icon"} className='rounded-xl shadow-md hover:scale-105'>
-                            <LucideUnlink className="w-6 h-6" />
-                        </Button>
-                        <Button variant="outline" size={"icon"} className='rounded-xl shadow-md hover:scale-105'>
-                            <Images className="w-6 h-6" />
-                        </Button> */}
-                        <Button className="bg-[#6466f1] border border-[#484ac1] hover:bg-[#595ce6] h-8 rounded-xl" asChild>
+                        <Button className="bg-[#6466f1] border border-[#484ac1] hover:bg-[#595ce6] text-white h-8 rounded-xl" asChild variant={"outline"}>
                             <Link href="/resources" className="flex items-center gap-2">
                                 <Pencil className="w-4 h-4" /> Add Resources
                             </Link>

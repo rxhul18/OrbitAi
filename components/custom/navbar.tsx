@@ -7,7 +7,7 @@ import ThemeToggle from './theme-toggle'
 
 function Navbar() {
     return (
-        <div className='border border-dashed sticky z-50 top-0'>
+        <div className='border border-dashed sticky z-50 -top-1'>
             <header className=" bg-background backdrop-blur-sm">
                 <nav className="container mx-auto px-4 h-16 flex items-center justify-between border border-dashed border-y-0">
                     <Link href="/" className="flex items-center gap-2">
@@ -18,12 +18,6 @@ function Navbar() {
                     </Link>
                     <div className="flex items-center gap-4">
                         <ThemeToggle />
-                        <Button variant="ghost" asChild>
-                            <Link href="/pricing" className='text-[1rem]'>Pricing</Link>
-                        </Button>
-                        <Button className="bg-[#6466f1] border border-[#484ac1] hover:bg-[#484ac1] h-8 rounded-xl" asChild>
-                            <Link href="/dashboard">Log in</Link>
-                        </Button>
                     </div>
                 </nav>
             </header>

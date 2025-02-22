@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export default function Footer() {
   return (
-    <footer className="border border-dashed bg-white">
+    <footer className="border border-dashed bg-background">
       <div className="mx-auto container px-4 py-12 md:px-6 lg:px-8 border border-dashed border-t-0">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-12">
           {/* Logo and tagline */}
@@ -15,7 +15,7 @@ export default function Footer() {
               </div>
               <span className="text-xl font-semibold">Brain</span>
             </div>
-            <h2 className="mt-6 text-3xl font-serif text-gray-900">
+            <h2 className="mt-6 text-3xl font-serif text-primary/85">
               Remember everything,
               <br />
               always.

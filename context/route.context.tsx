@@ -1,9 +1,9 @@
 "use client";
 import { useEffect } from "react";
 import { useAuth } from "./auth.context";
-// import LoadingScreen from "@/components/custom/loading-screen";
-// import RedirectingScreen from "@/components/custom/redirecting-screen";
 import { usePathname, useRouter } from "next/navigation";
+import OrbitRedirScreen from "@/components/custom/redirecting-screen"
+import OrbitLoadingScreen from "@/components/custom/loading-screen";
 
 export const RoutesContext = ({
   children,
@@ -36,7 +36,7 @@ export const RoutesContext = ({
 
   // Show the loading screen if loading and on a protected route
   if (loading && protectedRoutes.includes(path)) {
-    // return <LoadingScreen />;
+    return <OrbitLoadingScreen />;
   }
 
   // Show the redirecting screen while the redirect is in progress
@@ -44,7 +44,7 @@ export const RoutesContext = ({
     (!loading && user && publicRoutes.includes(path)) ||
     (!loading && !user && protectedRoutes.includes(path))
   ) {
-    // return <RedirectingScreen />;
+    return <OrbitRedirScreen/>
   }
 
   return children;

@@ -10,7 +10,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="w-full">
         <SignInNavbar />
         <div className="w-full h-full flex justify-center">
-          <div className="container border border-dashed border-t-0 p-2 bg-gray-100">
+          <div className="container border border-dashed border-t-0 p-2 bg-background">
             {children}
           </div>
         </div>

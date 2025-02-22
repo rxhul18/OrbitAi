@@ -112,8 +112,8 @@ export default function ChatInterface() {
   }, [messages])
 
   return (
-    <div className="flex h-full overflow-hidden justify-center items-center flex-col bg-background text-white">
-      <ScrollArea ref={scrollRef} className="flex-1 max-w-5xl py-6" onScroll={handleScroll}>
+    <div className="flex overflow-hidden h-full justify-center items-center flex-col bg-background text-white">
+      <ScrollArea ref={scrollRef} className="flex-1 p-6 md:py-6" onScroll={handleScroll}>
         <div className="space-y-4">
           {messages.map((message) => (
             <div key={message.id} className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}>

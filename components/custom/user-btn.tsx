@@ -34,7 +34,7 @@ import Link from "next/link";
 import { createClient } from "@/db/supabase/client";
 import { useAuth } from "@/context/auth.context";
 import { Badge } from "../ui/badge";
-import { Ellipsis, SquarePen } from "lucide-react";
+import { Ellipsis } from "lucide-react";
 
 export default function UserBtn() {
   const { user } = useAuth();
@@ -70,9 +70,6 @@ export default function UserBtn() {
             <div className="ml-xl absolute right-4">
               <Ellipsis className="size-5 text-muted-foreground" />
             </div>
-          </div>
-          <div className="absolute -top-11 right-0">
-            <Button className="text-muted-foreground hover:bg-secondary bg-primary-foreground" size={"icon"} title="New Chat"><SquarePen className="size-5 "/></Button>
           </div>
         </Button>
       </DropdownMenuTrigger>

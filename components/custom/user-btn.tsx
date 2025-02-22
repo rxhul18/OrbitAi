@@ -34,10 +34,11 @@ import Link from "next/link";
 import { createClient } from "@/db/supabase/client";
 import { useAuth } from "@/context/auth.context";
 import { Badge } from "../ui/badge";
-import { Ellipsis } from "lucide-react";
+import { Ellipsis, SquarePen } from "lucide-react";
 
 export default function UserBtn() {
   const { user } = useAuth();
+  console.log(user,"user");
   const pfp = user?.user_metadata.avatar_url ?? "https://github.com/shadcn.png";
   const handleSignOut = async () => {
     const supabase = createClient();
@@ -50,30 +51,33 @@ export default function UserBtn() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
-      <Button 
-  size="lg" 
-  variant="secondary" 
-  className="flex items-center gap-3 px-4 py-2 hover:bg-accent"
->
-  <Avatar className="h-8 w-8">
-    <AvatarImage
-      src={pfp || "https://github.com/shadcn.png"}
-      alt="User Profile Picture"
-    />
-    <AvatarFallback>PFP</AvatarFallback>
-  </Avatar>
-  <div className="flex items-center justify-between w-full">
-    <span className="text-sm font-medium truncate">
-      {user?.user_metadata.username || "Saidev Dhal"}
-    </span>
-    <div className="ml-xl">
-      <Ellipsis className="size-5 text-muted-foreground" />
-    </div>
-  </div>
-</Button>
+      <DropdownMenuTrigger className="min-w-full">
+        <Button
+          size="lg"
+          variant="secondary"
+          className="flex p-3 items-center relative justify-start min-w-full gap-3 h-[44px] hover:bg-accent"
+        >
+          <Avatar className="h-8 w-8">
+            <AvatarImage
+              src={pfp || "https://github.com/shadcn.png"}
+              alt="User Profile Picture"
+            />
+            <AvatarFallback>PFP</AvatarFallback>
+          </Avatar>
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-medium truncate">
+              {user?.user_metadata.name || "Saidev Dhal"}
+            </span>
+            <div className="ml-xl absolute right-4">
+              <Ellipsis className="size-5 text-muted-foreground" />
+            </div>
+          </div>
+          <div className="absolute -top-11 right-0">
+            <Button className="text-muted-foreground hover:bg-secondary bg-primary-foreground" size={"icon"} title="New Chat"><SquarePen className="size-5 "/></Button>
+          </div>
+        </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56 rounded-2xl mr-5 bg-primary-foreground">
+      <DropdownMenuContent className="w-56 rounded-2xl bg-primary-foreground">
         <DropdownMenuLabel className="flex flex-row gap-3 cursor-pointer">
           <Avatar className="cursor-pointer">
             <AvatarImage

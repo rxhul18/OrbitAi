@@ -107,17 +107,17 @@ export default function UserBtn() {
           </DropdownMenuItem>
           <DropdownMenuItem className="rounded-xl cursor-pointer">
             <IconBrandGithubCopilot className="h-5 w-5 mr-2" />
-            Customize x0-GPT
+            Customize
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <Link href={"https://github.com/shadcn.png"}>
+        <Link href={"https://github.com/rxhul18/OrbitAi"}>
           <DropdownMenuItem className="rounded-xl cursor-pointer">
             <IconBrandGithub className="h-5 w-5 mr-2" />
             GitHub
           </DropdownMenuItem>
         </Link>
-        <Link href={"https://github.com/shadcn.png"}>
+        <Link href={"https://github.com/sponsors/SkidGod4444"}>
           <DropdownMenuItem className="rounded-xl cursor-pointer">
             <IconHeartHandshake className="h-5 w-5 mr-2" />
             Support

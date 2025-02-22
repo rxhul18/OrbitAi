@@ -1,9 +1,8 @@
 import React from 'react'
 import Link from "next/link"
-import { Button } from '../ui/button'
-import { Pencil } from 'lucide-react'
 import { SidebarTrigger } from '../ui/sidebar'
 import OrbitLogo from './logo'
+import { AddResources } from './add-resources'
 
 function Navbar() {
     return (
@@ -31,11 +30,7 @@ export function SignInNavbar() {
                         </Link>
                     </div>
                     <div className="flex items-center gap-4">
-                        <Button className="bg-[#6466f1] border border-[#484ac1] hover:bg-[#595ce6] text-white h-8 rounded-xl" asChild variant={"outline"}>
-                            <Link href="/resources" className="flex items-center gap-2">
-                                <Pencil className="w-4 h-4" /> Add Resources
-                            </Link>
-                        </Button>
+                        <AddResources/>
                     </div>
                 </nav>
             </header>

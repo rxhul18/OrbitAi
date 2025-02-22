@@ -6,7 +6,7 @@ import { Textarea } from "../ui/textarea"
 
 export default function ChatInput() {
   return (
-    <div className="w-full py-4 flex items-center justify-center">
+    <div className="w-full pb-4 flex items-center justify-center">
       <div className="relative w-full max-w-5xl bg-[#1c1c1c] rounded-md">
         <Textarea
           placeholder="Was mach ich in Berlin wenn es regnet?"

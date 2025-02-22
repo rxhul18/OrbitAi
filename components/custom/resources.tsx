@@ -91,8 +91,10 @@ export default function DataViwer() {
                 {filterButtons.map((button) => (
                     <Button
                         key={button.id}
-                        variant="default"
+                        variant={`${activeFilter === button.id ? "default" : "secondary"}`}
+                        // variant="default"
                         size="sm"
+                        className={activeFilter === button.id ? "" :" opacity-80"}
                         onClick={() => setActiveFilter(button.id)}
                     >
                         {button.icon}

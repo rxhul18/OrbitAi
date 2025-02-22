@@ -1,5 +1,4 @@
 import { AppSidebar } from "@/components/custom/app-sidebar"
-import Footer from "@/components/custom/footer"
 import { SignInNavbar } from "@/components/custom/navbar"
 import { SidebarProvider } from "@/components/ui/sidebar"
 
@@ -14,7 +13,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             {children}
           </div>
         </div>
-        <Footer />
       </div>
     </SidebarProvider>
   )

@@ -1,10 +1,14 @@
 import { AppSidebar } from "@/components/custom/app-sidebar"
 import { SignInNavbar } from "@/components/custom/navbar"
 import { SidebarProvider } from "@/components/ui/sidebar"
+import { cookies } from "next/headers"
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+async function Layout({ children }: { children: React.ReactNode }) {
+  const cookieStore = await cookies()
+  const defaultOpen = cookieStore.get("orbit_sidebar_state")?.value === "true"
+
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={defaultOpen}>
       <AppSidebar />
       <div className="w-full">
         <SignInNavbar />
@@ -17,3 +21,5 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     </SidebarProvider>
   )
 }
+
+export default Layout;

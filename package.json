@@ -27,7 +27,7 @@
     "@upstash/redis": "^1.34.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "cmdk": "1.0.0",
+    "cmdk": "^1.0.4",
     "cobe": "^0.6.3",
     "date-fns": "^3.6.0",
     "lucide-react": "^0.475.0",

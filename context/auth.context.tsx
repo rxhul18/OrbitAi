@@ -1,6 +1,7 @@
 import { createClient } from "@/db/supabase/client";
 import { useState, useEffect } from "react";
 import { User } from "@supabase/supabase-js"; // Import the User type
+import { GenChatUUID, setUserCurrenChat, storeUser } from "@/func/func";
 // import { setUserCurrenChat, storeUser } from "@/db/func";
 // import { GenChatUUID } from "@/lib/func";
 
@@ -18,17 +19,17 @@ export const useAuth = () => {
       } = await supabase.auth.getUser();
 
       // Wait for 2.5 seconds before setting the user state
-    //   setTimeout(async () => {
-    //     if (user) {
-    //       await storeUser(user);
-    //       const slug = await GenChatUUID(user.id);
-    //       if (slug) {
-    //         await setUserCurrenChat(user.id, slug);
-    //       }
-    //     }
-    //     setUser(user ?? null);
-    //     setLoading(false);
-    //   }, 2500);
+      setTimeout(async () => {
+        if (user) {
+          await storeUser(user);
+          const slug = await GenChatUUID(user.id);
+          if (slug) {
+            await setUserCurrenChat(user.id, slug);
+          }
+        }
+        setUser(user ?? null);
+        setLoading(false);
+      }, 2500);
     };
 
     fetchUser();

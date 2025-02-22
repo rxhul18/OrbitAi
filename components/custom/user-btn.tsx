@@ -38,7 +38,6 @@ import { Ellipsis, SquarePen } from "lucide-react";
 
 export default function UserBtn() {
   const { user } = useAuth();
-  console.log(user,"user");
   const pfp = user?.user_metadata.avatar_url ?? "https://github.com/shadcn.png";
   const handleSignOut = async () => {
     const supabase = createClient();

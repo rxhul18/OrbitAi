@@ -10,11 +10,9 @@ import { Badge } from "@/components/ui/badge"
 import ClickSpark from "@/components/custom/click-sparke"
 import Footer from "@/components/custom/footer"
 import Navbar from "@/components/custom/navbar"
-import { Globe } from "@/components/magicui/globe"
-import { Meteors } from "@/components/magicui/meteors"
 import { BentoDemo } from "@/components/custom/bento"
 import { FeatureList } from "@/components/custom/feature-notifiaction"
-import SignInBtn from "@/components/custom/sign-btn"
+import Hero from "@/components/custom/hero"
 
 const content = [{
   title: "Store Every Thought",
@@ -44,50 +42,12 @@ const content = [{
 }
 ]
 
-// const files = [
-//   {
-//     name: "bitcoin.pdf",
-//     body: "Bitcoin is a cryptocurrency invented in 2008 by an unknown person or group of people using the name Satoshi Nakamoto.",
-//   },
-//   {
-//     name: "finances.xlsx",
-//     body: "A spreadsheet or worksheet is a file made of rows and columns that help sort data, arrange data easily, and calculate numerical data.",
-//   },
-//   {
-//     name: "logo.svg",
-//     body: "Scalable Vector Graphics is an Extensible Markup Language-based vector image format for two-dimensional graphics with support for interactivity and animation.",
-//   },
-//   {
-//     name: "keys.gpg",
-//     body: "GPG keys are used to encrypt and decrypt email, files, directories, and whole disk partitions and to authenticate messages.",
-//   },
-//   {
-//     name: "seed.txt",
-//     body: "A seed phrase, seed recovery phrase or backup seed phrase is a list of words which store all the information needed to recover Bitcoin funds on-chain.",
-//   },
-// ];
-
 export default function Home() {
   return (
     <div className="min-h-screen relative bg-background">
       <Navbar />
-      <main className="border relative border-dashed border-t-0 bg-background">
-        <section className="border border-dashed border-y-0 container items-center h-[80vh] mx-auto px-4 text-center py-16 md:py-20 md:pb-16">
-          <h1 className="text-4xl md:text-5xl font-serif mb-3 text-primary/80 font-extralight tracking-tight">Your personal knowledge vault.</h1>
-          <p className="text-xl text-gray-600 mb-10">
-            Effortlessly store, recall, and connect all your knowledge with Brain
-          </p>
-          <SignInBtn/>
-          <div className="pt-5 pb-5">
-            <div className="relative flex h-[40px] md:h-[100px] w-full flex-col items-center justify-center overflow-hidden">
-              <Meteors number={12} />
-              <span className="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-black to-gray-300/80 bg-clip-text text-center text-5xl md:text-8xl font-semibold leading-none text-transparent dark:from-white dark:to-slate-900/10">
-                Orbit Ai
-              </span>
-            </div>
-          </div>
-          <Globe className="top-[28rem] md:top-[22.5rem] overflow-hidden" />
-        </section>
+      <main className="border border-dashed border-t-0 bg-background">
+        <Hero />
         <div className="w-full flex justify-center border border-dashed border-b-0 bg-background relative">
           <BentoDemo />
         </div>

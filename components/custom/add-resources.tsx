@@ -17,11 +17,13 @@ import { CirclePlus, Pencil, SaveAll } from "lucide-react"
 import { useEffect, useState } from "react"
 import { ResourceType } from "./res-type"
 import { Textarea } from "../ui/textarea"
-import { SelectSpace } from "./select-space";
 import { CreateSpace } from "./create-space";
+import { SpaceComp } from "./select-space";
+import { getSpaceByName, storeResource } from "@/func/func";
+import { toast } from "sonner";
+
 
 export function AddResources() {
-
     const { user } = useAuth();
     const [open, setOpen] = useState(false);
     const [ph, setPh] = useState<string | null>(null);
@@ -29,6 +31,17 @@ export function AddResources() {
     const [space, setSpace] = useState<string | null>(null);
     const [content, setContent] = useState<string | null>(null);
     const [contentType, setContentType] = useState<string | null>(null)
+
+    const handleSubmit = async () => {
+        if(user && title && content && contentType && space){
+            const uid = user?.id;
+            await storeResource(uid, title, contentType!, content!, space!)
+            toast.success("Your space is created!")
+            setOpen(false);
+        } else {
+            toast.error("Please provide all fields!")
+        }
+    }
 
     useEffect(() => {
         if (contentType === "pdf") {
@@ -40,36 +53,25 @@ export function AddResources() {
         } else if (contentType === "html") {
             setPh("Provide your webpage url.");
         }
+
     }, [contentType]);
 
 
-    useEffect(() => {
-        const down = (e: KeyboardEvent) => {
-            if (e.key === "q" && (e.metaKey || e.ctrlKey)) {
-                e.preventDefault();
-                setOpen((open) => !open);
-            }
-        };
-
-        document.addEventListener("keydown", down);
-        return () => document.removeEventListener("keydown", down);
-    }, []);
-
     return (
-        <Dialog>
-            <DialogTrigger>
+        <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger asChild>
                 <Button className="bg-[#6466f1] border border-[#484ac1] hover:bg-[#595ce6] text-white h-8" variant={"default"}>
-                    <Pencil className="h-5 w-5" /> Add Resource
+                    <Pencil className="h-5 w-5" /> Add Context
                 </Button>
             </DialogTrigger>
             <DialogContent className="bg-primary-foreground">
                 <DialogHeader>
-                    <DialogTitle>Add your resources!</DialogTitle>
+                    <DialogTitle>Add your context!</DialogTitle>
                     <DialogDescription>
                         Give me anything, I will remember for you.
                     </DialogDescription>
                 </DialogHeader>
-                <Label htmlFor="title">Title (Optional)</Label>
+                <Label htmlFor="title">Title*</Label>
                 <Input
                     id="title"
                     placeholder="Enter the title."
@@ -79,8 +81,8 @@ export function AddResources() {
                     }
                 />
                 <Label htmlFor="space">Select a space *</Label>
-                <div className="flex gap-3 justify-between">
-                    <SelectSpace />
+                <div className="flex w-1/2 space-x-12 justify-between">
+                    <SpaceComp onSpaceSelect={(spaceId) => setSpace(spaceId)}/>
                     <CreateSpace />
                 </div>
                 <Label htmlFor="resource">Select content type *</Label>
@@ -95,7 +97,7 @@ export function AddResources() {
                     }
                 />
                 <DialogFooter>
-                    <Button type="button" onClick={() => (console.log({ title, space, content, contentType }))}>
+                    <Button type="button" onClick={handleSubmit}>
                         <SaveAll className="size-5 mr-2" />
                         Save
                     </Button>

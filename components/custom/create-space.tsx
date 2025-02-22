@@ -13,13 +13,30 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "../ui/textarea"
 import { useState } from "react"
 import { PencilLine } from "lucide-react"
+import { useAuth } from "@/context/auth.context"
+import { storeSpace } from "@/func/func"
+import { toast } from "sonner"
 
-export function CreateSpace() {
-    
+interface CreateSpaceProps {
+    onSpaceCreated?: (spaceName: string) => void;
+}
+
+export function CreateSpace({ onSpaceCreated }: CreateSpaceProps) {
+    const {user} = useAuth();
+    const [title, setTitle] = useState<string | null>(null);
+    const [desc, setDesc] = useState<string | null>(null);
     const [open,setOpen] = useState(false);
 
-    const handleSubmit = () => {
-        setOpen((open) => !open);
+    const handleSubmit = async () => {
+        if(user && title){
+            const uid = user?.id;
+            await storeSpace(uid, title, desc!)
+            toast.success("Your space is created!")
+            if (onSpaceCreated) {
+                onSpaceCreated(title);
+            }
+            setOpen(false);
+        }
     }
 
     return (
@@ -35,15 +52,11 @@ export function CreateSpace() {
                     </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
-                    {/* <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="name" className="text-right">
-                            Name
-                        </Label>
-                        <Input id="name" value="Pedro Duarte" className="col-span-3" />
-                    </div> */}
                     <div className="flex flex-col items-start gap-2">
                         <Label htmlFor="name" className="text-left">Name *</Label>
-                        <Input id="name" placeholder="Enter the name" className="col-span-3" />
+                        <Input id="name" placeholder="Enter the name" className="col-span-3" onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        setTitle(e.target.value)
+                    } />
                     </div>
                     <div className="flex flex-col items-start gap-2">
                         <Label htmlFor="description" className="text-left">Description</Label>
@@ -51,6 +64,9 @@ export function CreateSpace() {
                             placeholder={ "Enter your content."}
                             id="description"
                             className="border border-muted rounded-xl"
+                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                                setDesc(e.target.value)
+                            }
                         />
                     </div>
                 </div>

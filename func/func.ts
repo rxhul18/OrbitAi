@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createClient } from "@/db/supabase/client";
 const supabase = createClient();
@@ -216,11 +217,167 @@ const deleteChat = async (chatId: string) => {
   }
 };
 
+// ______________________________________________________________________________________________________________________
+// SPACES FUNCTIONS
+// ______________________________________________________________________________________________________________________
+
+const storeSpace = async (
+  user_id: string,
+  name: string,
+  description?: string,
+  resources?: string[],
+) => {
+  const { data, error } = await supabase.from("spaces").upsert({
+    name: name,
+    resources: resources,
+    desc: description,
+    user_id: user_id,
+  });
+  if (error) {
+    console.error("Error inserting or updating space data:", error);
+  } else {
+    console.log("Space data inserted successfully");
+  }
+};
+
+const updateSpaceNameSpace = async (id: string, namepsace: string) => {
+  const { data, error } = await supabase
+    .from("spaces")
+    .update({ name_space: namepsace })
+    .eq("id", id);
+
+  if (error) {
+    console.error("Error updating space namespace:", error);
+  } else {
+    console.log("Space namespace updated successfully");
+  }
+};
+
+const updateSpaceDescription = async (id: string, description: string) => {
+  const { data, error } = await supabase
+    .from("spaces")
+    .update({ description: description })
+    .eq("id", id);
+
+  if (error) {
+    console.error("Error updating space description:", error);
+  } else {
+    console.log("Space description updated successfully");
+  }
+};
+
+const deleteSpace = async (spaceId: string) => {
+  const { data, error } = await supabase
+    .from("spaces")
+    .delete()
+    .eq("id", spaceId);
+
+  if (error) {
+    console.error("Error deleting space data:", error);
+  } else {
+    console.log("Space data deleted successfully");
+  }
+};
+
+const getSpaceById = async (id: string) => {
+  const { data, error } = await supabase
+    .from("spaces")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    console.error("Error fetching space:", error);
+    return null;
+  } else if (data) {
+    console.log("Space found:", data);
+    return data;
+  } else {
+    return null;
+  }
+};
+
+const getSpaceByName = async (name: string, userId: string): Promise<any> => {
+  const { data, error } = await supabase
+    .from("spaces")
+    .select("*")
+    .eq("name", name)
+    .eq("user_id", userId)
+    .single();
+
+  if (error) {
+    console.error("Error fetching space:", error);
+    return null;
+  } else if (data) {
+    console.log("Space found:", data);
+    return data;
+  } else {
+    return null;
+  }
+};
+
+const getSpacesByUserId = async (userId: string) => {
+  const { data, error } = await supabase
+    .from("spaces")
+    .select("*")
+    .eq("user_id", userId);
+
+  if (error) {
+    console.error("Error fetching spaces:", error);
+    return null;
+  } else if (data) {
+    console.log("Spaces found:", data);
+    return data;
+  } else {
+    return null;
+  }
+};
+
+// ______________________________________________________________________________________________________________________
+// RESOURCES FUNCTIONS
+// ______________________________________________________________________________________________________________________
+
+const storeResource = async (
+  user_id: string,
+  title: string,
+  type: string,
+  content: string,
+  spaces?: string,
+) => {
+  const { data, error } = await supabase.from("resources").upsert({
+    title: title,
+    spaces: spaces,
+    type: type,
+    content: content,
+    user_id: user_id,
+  });
+  if (error) {
+    console.error("Error inserting or updating resource data:", error);
+  } else {
+    console.log("Resource data inserted successfully");
+  }
+};
+
+
 export {
     storeUser,
     getUserById,
     getUserCurrenChat,
     updateUserName,
     setUserCurrenChat,
-    deleteUser
+    deleteUser,
+    storeChat,
+    updateChatNameSpace,
+    updateChatTitle,
+    getChatsByUserId,
+    getChatBySlug,
+    deleteChat,
+    storeSpace,
+    updateSpaceNameSpace,
+    updateSpaceDescription,
+    deleteSpace,
+    getSpaceById,
+    getSpaceByName,
+    getSpacesByUserId,
+    storeResource
 }

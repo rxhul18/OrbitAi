@@ -15,13 +15,13 @@ import Link from "next/link";
 import { MyLinks } from "@/db/defaults";
 import { useAuth } from "@/context/auth.context";
 import { toast } from "sonner";
-// import { getChatsByUserId } from "@/db/func";
 import { Input } from "@/components/ui/input";
 import { getChatsByUserId } from "@/func/func";
 
 interface HistoryInt {
   slug: string;
   name: string;
+  created_at: string;
 }
 
 export default function SearchHistory() {
@@ -43,7 +43,12 @@ export default function SearchHistory() {
             const formattedSpaces = historyData.map((chat: any) => ({
               slug: chat.slug,
               name: chat.title,
+              created_at: chat.created_at,
             }));
+
+            // Sort history in recent order
+            formattedSpaces.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+
             setHistory(formattedSpaces);
           }
         } catch (error) {

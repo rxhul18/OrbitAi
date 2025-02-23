@@ -5,26 +5,26 @@ import { Textarea } from "@/components/ui/textarea"
 import { useAuth } from "@/context/auth.context";
 import { getChatBySlug, storeChat } from "@/func/func";
 import { Message, useChat } from "ai/react";
-import { ArrowUp, Mic, Plus } from "lucide-react"
-import { useEffect } from "react";
+import { ArrowUp, Mic } from "lucide-react"
+import { useEffect, useState } from "react";
 import FileUploadComp from "../file-uploader";
+import { SpaceComp } from "../select-space";
 
 export default function ChatInput({
   chatId,
   history,
-  space,
   onHasMessagesChange,
   onMessageResponse,
 }: {
   chatId: string;
   history?: Message[];
-  space?: string;
   onHasMessagesChange?: (hasMessages: boolean) => void;
   onMessageResponse?: (msgs: Message[]) => void;
 }) {
 
   const { user } = useAuth();
   const uid = user?.id;
+  const [thisSpace, setThisSpace] = useState<string | null>(null);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -47,9 +47,11 @@ export default function ChatInput({
   const { messages, handleInputChange, handleSubmit, input, isLoading } =
     useChat({
       api: "/api/ai/stream",
-      body: { chatId, namespace: space },
+      body: { chatId, namespace: '7f622aa1-5c48-40b0-ba13-ed4c0f451d39' },
       initialMessages: history,
     });
+    console.log("spaceXXX:", thisSpace)
+    console.log("ChatIDD:", messages)
 
   useEffect(() => {
     const storeChatData = async (title: string) => {
@@ -89,7 +91,11 @@ export default function ChatInput({
           className="w-full bg-[#1c1c1c] border-none text-white resize-none placeholder:text-gray-400 p-3  rounded-2xl focus-visible:ring-0 focus-visible:ring-offset-0"
         />
         <div className="w-full flex justify-between p-3">
+          
+          <div className="flex flex-row gap-2">
           <FileUploadComp disabled={isLoading}/>
+          <SpaceComp placeHolder="Ask your Space" onSpaceSelect={(space) => setThisSpace(space)}/>
+          </div>
           <div className="gap-2 flex">
             <Button
               size="icon"

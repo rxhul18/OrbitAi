@@ -60,11 +60,6 @@ export default function ChatInterface({ params }: { params: Promise<{ slug: stri
     })
   }
 
-  const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
-    const target = event.target as HTMLDivElement
-    setShowScrollTop(target.scrollTop > 100)
-  }
-
   useEffect(() => {
     scrollTo("bottom")
   }, [msgs])

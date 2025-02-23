@@ -51,6 +51,8 @@ export function HistoryChat() {
               created: chat.created_at,
             }));
 
+            formattedHist.sort((a, b) => new Date(b.created).getTime() - new Date(a.created).getTime());
+
             setChatHistory(formattedHist);
           }
         } catch (error) {

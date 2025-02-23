@@ -2,12 +2,11 @@ import { redis } from "@/db/upstash/redis";
 import { RAGChat, togetherai } from "@upstash/rag-chat";
 
 const ragChat = new RAGChat({
-  model: togetherai("deepseek-ai/DeepSeek-R1-Distill-Llama-70B-free"),
+  model: togetherai("deepseek-ai/DeepSeek-R1-Distill-Llama-70B-free"), //meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo
   redis: redis,
-  debug: true,
   promptFn: ({ context, question, chatHistory }) =>
     `You are Orbit Ai, a personal & user's private AI assistant created by Saidev Dhal & Rahul Shah.
-     Use the provided context and chat history to answer the question. Please try not to hallucinate while replying.
+     Use the provided context and chat history to answer the question.
      If the answer or context isn't available, politely inform the user to disable RAG or just choose to provide appropiate resources.
      ------
      Chat history:

@@ -12,7 +12,7 @@ async function Layout({ children }: { children: React.ReactNode }) {
       <AppSidebar />
       <div className="w-full">
         <SignInNavbar />
-        <div className="w-full h-full flex justify-center">
+        <div className="flex h-full justify-center overflow-hidden">
           <div className="container border border-dashed border-t-0 bg-background">
             {children}
           </div>

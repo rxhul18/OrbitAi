@@ -42,12 +42,13 @@ export default function Page() {
     return null;
   }
   return (
-    <div className="h-fit p-4 md:p-6">
-      <div className="mx-auto max-w-5xl space-y-6 md:mt-35 lg:mt-40 mt-30">
+    <div className="flex h-auto overflow-hidden justify-center items-center flex-col bg-background text-white">
       <ChatBox msgs={msgs} />
-        <ChatInput chatId={chatID} onHasMessagesChange={setMsg} onMessageResponse={setMsgs} />
-        {/* Filter tabs */}
-        {msgs.length <= 0 && <DataViwer />}
+      <div className="p-4 w-full px-auto">
+        <ChatInput chatId={chatID} history={msgs} onMessageResponse={setMsgs} />
+        {msgs.length <= 0 ? <DataViwer /> : <p className="mt-2 text-center text-xs text-zinc-500">
+          Orbit Ai can make mistakes rarely. Check important info.
+        </p>}
       </div>
     </div>
   )

@@ -72,7 +72,7 @@ export default function ChatInterface({ params }: { params: Promise<{ slug: stri
   if (isLoading) return <OrbitLoadingScreen />
 
   return (
-    <div className="flex h-screen overflow-hidden justify-center items-center flex-col bg-background text-white">
+    <div className="flex h-full overflow-hidden justify-center items-center flex-col bg-background text-white">
       <ChatBox msgs={msgs} />
 
       <div className="p-4 w-full">

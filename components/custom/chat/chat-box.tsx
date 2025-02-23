@@ -110,7 +110,7 @@ const processStreamingContent = (content: string) => {
 export default function ChatBox({ msgs }: { msgs?: Message[] }) {
   return (
     <div className="h-[calc(80vh-200px)]">
-      <ScrollArea className="h-full max-w-5xl py-6">
+      <ScrollArea className="h-full max-w-5xl py-6 p-4">
         <div className="space-y-4">
           {msgs?.map((message) => (
             <div

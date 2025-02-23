@@ -10,9 +10,9 @@ async function Layout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider defaultOpen={defaultOpen}>
       <AppSidebar />
-      <div className="w-full">
+      <div className="w-full h-full">
         <SignInNavbar />
-        <div className="flex h-full justify-center overflow-hidden">
+        <div className="flex h-[calc(100vh-80px)] justify-center overflow-hidden">
           <div className="container border border-dashed border-t-0 bg-background">
             {children}
           </div>

@@ -50,40 +50,40 @@ export default function ChatInput({
       initialMessages: history,
     });
 
-    useEffect(() => {
-      const storeChatData = async (title: string) => {
-        const isSlug = await getChatBySlug(chatId);
-        if (!isSlug) {
-          storeChat(uid!, chatId, title);
-        }
-      };
-      if (messages.length) {
-        const title = messages[0].content;
-        const tits = title.length > 30 ? `${title.slice(0, 30)}...` : title;
-        storeChatData(tits);
-        if (onHasMessagesChange) {
-          onHasMessagesChange(true);
-        }
-        if(onMessageResponse){
-          if(messages.length < 2) {
-            setTimeout(() => {
-              onMessageResponse(messages);
-            }, 1350);
-          } else {
+  useEffect(() => {
+    const storeChatData = async (title: string) => {
+      const isSlug = await getChatBySlug(chatId);
+      if (!isSlug) {
+        storeChat(uid!, chatId, title);
+      }
+    };
+    if (messages.length) {
+      const title = messages[0].content;
+      const tits = title.length > 30 ? `${title.slice(0, 30)}...` : title;
+      storeChatData(tits);
+      if (onHasMessagesChange) {
+        onHasMessagesChange(true);
+      }
+      if (onMessageResponse) {
+        if (messages.length < 2) {
+          setTimeout(() => {
             onMessageResponse(messages);
-          }
+          }, 1350);
+        } else {
+          onMessageResponse(messages);
         }
       }
-    }, [messages, uid, chatId, onHasMessagesChange, onMessageResponse]);
+    }
+  }, [messages, uid, chatId, onHasMessagesChange, onMessageResponse]);
 
   return (
     <form
-                onSubmit={handleSubmit}
-                 className="w-full pb-4 flex items-center justify-center overflow-hidden">
+      onSubmit={handleSubmit}
+      className="w-full pb-4 flex items-center justify-center overflow-hidden">
       <div className="relative w-full max-w-5xl bg-[#1c1c1c] rounded-md">
         <Textarea
-        value={input}
-        onChange={handleInputChange}
+          value={input}
+          onChange={handleInputChange}
           placeholder="Was mach ich in Berlin wenn es regnet?"
           className="w-full bg-[#1c1c1c] border-none text-white resize-none placeholder:text-gray-400 p-3  rounded-2xl focus-visible:ring-0 focus-visible:ring-offset-0"
         />
@@ -95,7 +95,7 @@ export default function ChatInput({
             <Plus className="h-8 w-8 text-gray-400" />
           </Button>
           <div className="gap-2 flex">
-          <Button
+            <Button
               size="icon"
               className="h-10 w-10 rounded-full bg-[#2c2c2c] hover:bg-[#3c3c3c] border-none"
             >

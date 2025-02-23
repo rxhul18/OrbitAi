@@ -33,15 +33,38 @@ export function AddResources() {
     const [contentType, setContentType] = useState<string | null>(null)
 
     const handleSubmit = async () => {
-        if(user && title && content && contentType && space){
-            const uid = user?.id;
-            await storeResource(uid, title, contentType!, content!, space!)
-            toast.success("Your space is created!")
+        if (user && contentType && content && space) {
+          try {
+            const response = await fetch("/api/ai/add", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                type: contentType,
+                content: content,
+                namespace: space,
+              }),
+            });
+    
+            if (!response.ok) {
+              throw new Error("Failed to save resource");
+            }
+    
+            await storeResource(user?.id, title!, contentType!, content!, space!);
             setOpen(false);
+            const currentDate = new Date().toLocaleString();
+            toast.success(`Resource has been saved!`, {
+              description: currentDate,
+            });
+          } catch (error) {
+            console.error("Error saving resource:", error);
+            toast.error("Failed to save resource. Please try again.");
+          }
         } else {
-            toast.error("Please provide all fields!")
+          toast.error("Please fill all the required fields.");
         }
-    }
+      };
 
     useEffect(() => {
         if (contentType === "pdf") {

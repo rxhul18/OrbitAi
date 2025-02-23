@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ChatBox from "@/components/custom/chat/chat-box";
 import { Message } from "ai/react"
+import ShinyText from "@/components/magicui/shiny-text";
 
 export default function Page() {
   const { user } = useAuth();

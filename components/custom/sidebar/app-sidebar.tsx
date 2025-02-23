@@ -16,6 +16,7 @@ import SearchHistory from "./search-history";
 import { Button } from "@/components/ui/button";
 import { SquarePen } from "lucide-react";
 import { HistoryChat } from "./history-viewer";
+import Resources from "./resources";
 
 export function AppSidebar() {
   const {
@@ -36,6 +37,7 @@ export function AppSidebar() {
       <SidebarContent className="min-w-full">
         <SidebarGroup className="w-full py-1">
           <SearchHistory />
+          <Resources />
         </SidebarGroup>
         <SidebarGroup className="w-full h-full flex justify-start py-0">
           <HistoryChat />

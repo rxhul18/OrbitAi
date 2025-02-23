@@ -85,7 +85,7 @@ export function HistoryChat() {
           <ContextMenu key={item.slug}>
             <ContextMenuTrigger>
             <Link href={`/c/${item.slug}`} passHref>
-              <div className="flex items-center justify-between p-2 hover:bg-zinc-800/50 rounded-lg cursor-pointer">
+              <div className="flex items-center justify-between p-2 hover:bg-zinc-800/50 rounded-lg cursor-pointer my-1">
                 <div>
                   <p className="text-sm font-medium">{item.name}</p>
                   <p className="text-xs text-zinc-400">{format(item.created, "MMM dd, yyyy")}</p>

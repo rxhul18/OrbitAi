@@ -4,6 +4,7 @@ import { FileIcon, FileText, FileTextIcon, FileType, Link2Icon, NotebookPen, Tab
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import React from 'react'
+import { BlurFade } from "../magicui/blur-fade"
 
 // Define the type for our button data
 type FilterButton = {
@@ -121,84 +122,94 @@ export default function DataViwer() {
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mt-4 w-full">
                 {activeFilter === "notes" &&
                     notesData.map((note) => (
-                        <Card key={note.id} className="overflow-hidden">
-                            <CardHeader className="p-4">
-                                <CardTitle className="text-lg flex items-center gap-2">
-                                    <FileTextIcon className="h-5 w-5 text-blue-500" />
-                                    {note.title}
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent className="p-4 pt-0">
-                                <p className="text-sm text-muted-foreground line-clamp-3">{note.content}</p>
-                            </CardContent>
-                        </Card>
+                        <BlurFade key={note.id} delay={0.25 + note.id * 0.05} inView>
+                            <Card key={note.id} className="overflow-hidden">
+                                <CardHeader className="p-4">
+                                    <CardTitle className="text-lg flex items-center gap-2">
+                                        <FileTextIcon className="h-5 w-5 text-blue-500" />
+                                        {note.title}
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent className="p-4 pt-0">
+                                    <p className="text-sm text-muted-foreground line-clamp-3">{note.content}</p>
+                                </CardContent>
+                            </Card>
+                        </BlurFade>
                     ))}
                 {activeFilter === "text" &&
                     textData.map((text) => (
-                        <Card key={text.id} className="overflow-hidden">
-                            <CardHeader className="p-4">
-                                <CardTitle className="text-lg flex items-center gap-2">
-                                    <FileIcon className="h-5 w-5 text-green-500" />
-                                    {text.title}
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent className="p-4 pt-0">
-                                <p className="text-sm text-muted-foreground line-clamp-3">{text.content}</p>
-                            </CardContent>
-                        </Card>
+                        <BlurFade key={text.id} delay={0.25 + text.id * 0.05} inView>
+                            <Card key={text.id} className="overflow-hidden">
+                                <CardHeader className="p-4">
+                                    <CardTitle className="text-lg flex items-center gap-2">
+                                        <FileIcon className="h-5 w-5 text-green-500" />
+                                        {text.title}
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent className="p-4 pt-0">
+                                    <p className="text-sm text-muted-foreground line-clamp-3">{text.content}</p>
+                                </CardContent>
+                            </Card>
+                        </BlurFade>
                     ))}
                 {activeFilter === "pdf" &&
                     pdfData.map((pdf) => (
-                        <Card key={pdf.id} className="overflow-hidden">
-                            <CardHeader className="p-4">
-                                <CardTitle className="text-lg flex items-center gap-2">
-                                    <FileTextIcon className="h-5 w-5 text-red-500" />
-                                    {pdf.title}
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent className="p-4 pt-0">
-                                <p className="text-sm text-muted-foreground">{pdf.pages} pages</p>
-                            </CardContent>
-                        </Card>
+                        <BlurFade key={pdf.id} delay={0.25 + pdf.id * 0.05} inView>
+                            <Card key={pdf.id} className="overflow-hidden">
+                                <CardHeader className="p-4">
+                                    <CardTitle className="text-lg flex items-center gap-2">
+                                        <FileTextIcon className="h-5 w-5 text-red-500" />
+                                        {pdf.title}
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent className="p-4 pt-0">
+                                    <p className="text-sm text-muted-foreground">{pdf.pages} pages</p>
+                                </CardContent>
+                            </Card>
+                        </BlurFade>
                     ))}
                 {activeFilter === "csv" &&
                     csvData.map((csv) => (
-                        <Card key={csv.id} className="overflow-hidden">
-                            <CardHeader className="p-4">
-                                <CardTitle className="text-lg flex items-center gap-2">
-                                    <TableIcon className="h-5 w-5 text-yellow-500" />
-                                    {csv.title}
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent className="p-4 pt-0">
-                                <p className="text-sm text-muted-foreground">
-                                    {csv.rows} rows, {csv.columns} columns
-                                </p>
-                            </CardContent>
-                        </Card>
+                        <BlurFade key={csv.id} delay={0.25 + csv.id * 0.05} inView>
+                            <Card key={csv.id} className="overflow-hidden">
+                                <CardHeader className="p-4">
+                                    <CardTitle className="text-lg flex items-center gap-2">
+                                        <TableIcon className="h-5 w-5 text-yellow-500" />
+                                        {csv.title}
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent className="p-4 pt-0">
+                                    <p className="text-sm text-muted-foreground">
+                                        {csv.rows} rows, {csv.columns} columns
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </BlurFade>
                     ))}
                 {activeFilter === "links" &&
                     linksData.map((link) => (
-                        <Card key={link.id} className="overflow-hidden">
-                            <CardHeader className="p-4">
-                                <CardTitle className="text-lg flex items-center gap-2">
-                                    <Link2Icon className="h-5 w-5 text-purple-500" />
-                                    {link.title}
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent className="p-4 pt-0">
-                                <a
-                                    href={link.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-sm text-blue-500 hover:underline truncate block"
-                                >
-                                    {link.url}
-                                </a>
-                            </CardContent>
-                        </Card>
+                        <BlurFade key={link.id} delay={0.25 + link.id * 0.05} inView>
+                            <Card key={link.id} className="overflow-hidden">
+                                <CardHeader className="p-4">
+                                    <CardTitle className="text-lg flex items-center gap-2">
+                                        <Link2Icon className="h-5 w-5 text-purple-500" />
+                                        {link.title}
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent className="p-4 pt-0">
+                                    <a
+                                        href={link.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-sm text-blue-500 hover:underline truncate block"
+                                    >
+                                        {link.url}
+                                    </a>
+                                </CardContent>
+                            </Card>
+                        </BlurFade>
                     ))}
-                {/* {activeFilter === "spaces" &&
+                            {/* {activeFilter === "spaces" &&
                     spaces.map((space) => (
                         <Card key={space.id} className="overflow-hidden">
                             <CardHeader className="p-4">
@@ -219,7 +230,7 @@ export default function DataViwer() {
                             </CardContent>
                         </Card>
                     ))} */}
-            </div>
+                        </div>
         </div>
-    )
+            )
 }

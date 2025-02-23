@@ -18,8 +18,8 @@ export const POST = async (req: NextRequest) => {
     historyTTL: 604_800,
     similarityThreshold: 0.7,
     onContextFetched: (context) => {
-      console.log("Retrieved context:", context)
-      return context
+      console.log("Retrieved context:", context);
+      return context;
     },
     disableRAG: disableRAG,
   });

@@ -1,6 +1,10 @@
-import { AddCSVContext, AddPDFContext, AddTXTContext, AddWEBContext } from "@/lib/rag";
+import {
+  AddCSVContext,
+  AddPDFContext,
+  AddTXTContext,
+  AddWEBContext,
+} from "@/lib/rag";
 import { NextRequest, NextResponse } from "next/server";
-
 
 export const POST = async (req: NextRequest) => {
   try {

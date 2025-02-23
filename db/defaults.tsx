@@ -4,4 +4,3 @@ export const MyLinks = {
   instagram: "https://www.instagram.com/dev.unfazed",
   sponsor: "https://github.com/sponsors/SkidGod4444",
 };
-

@@ -72,9 +72,7 @@ const features = [
     className: "col-span-3 lg:col-span-1",
     href: "#",
     cta: "Learn more",
-    background: (
-      <FeatureList />
-    ),
+    background: <FeatureList />,
   },
   {
     Icon: Share2Icon,
@@ -92,7 +90,7 @@ const features = [
 export function BentoDemo() {
   return (
     <BentoGrid className="w-full justify-center container p-10 border border-dashed border-y-0">
-        {/* <div className="w"></div> */}
+      {/* <div className="w"></div> */}
       {features.map((feature, idx) => (
         <BentoCard key={idx} {...feature} />
       ))}

@@ -16,9 +16,14 @@ const useLocalStorage = (key: string, initialValue: string | boolean) => {
     return parseStoredValue(storedValue);
   });
 
-  const setLocalStorageValue = (newValue: typeof initialValue | ((prev: typeof initialValue) => typeof initialValue)) => {
+  const setLocalStorageValue = (
+    newValue:
+      | typeof initialValue
+      | ((prev: typeof initialValue) => typeof initialValue),
+  ) => {
     // Handle function updates
-    const valueToStore = newValue instanceof Function ? newValue(value) : newValue;
+    const valueToStore =
+      newValue instanceof Function ? newValue(value) : newValue;
     setValue(valueToStore);
     localStorage.setItem(key, valueToStore.toString());
   };

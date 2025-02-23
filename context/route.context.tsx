@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useAuth } from "./auth.context";
 import { usePathname, useRouter } from "next/navigation";
-import OrbitRedirScreen from "@/components/custom/redirecting-screen"
+import OrbitRedirScreen from "@/components/custom/redirecting-screen";
 import OrbitLoadingScreen from "@/components/custom/loading-screen";
 
 export const RoutesContext = ({
@@ -44,7 +44,7 @@ export const RoutesContext = ({
     (!loading && user && publicRoutes.includes(path)) ||
     (!loading && !user && protectedRoutes.includes(path))
   ) {
-    return <OrbitRedirScreen/>
+    return <OrbitRedirScreen />;
   }
 
   return children;

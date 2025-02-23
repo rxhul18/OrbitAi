@@ -115,7 +115,13 @@ export function FeatureList({ className }: { className?: string }) {
   );
 }
 
-const FeatutesNotification = ({ name, description, icon, color, time }: Item) => {
+const FeatutesNotification = ({
+  name,
+  description,
+  icon,
+  color,
+  time,
+}: Item) => {
   return (
     <figure
       className={cn(

@@ -47,7 +47,11 @@ export default function SearchHistory() {
             }));
 
             // Sort history in recent order
-            formattedSpaces.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+            formattedSpaces.sort(
+              (a, b) =>
+                new Date(b.created_at).getTime() -
+                new Date(a.created_at).getTime(),
+            );
 
             setHistory(formattedSpaces);
           }

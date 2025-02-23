@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
-import { IconPaperclip } from "@tabler/icons-react";
 import {
   Dialog,
   DialogContent,
@@ -30,7 +29,7 @@ export default function FileUploadComp({ disabled }: { disabled: boolean }) {
   const [space, setSpace] = useState<string | null>(null);
   const [contentType, setContentType] = useState<string | null>(null);
   const [title, setTitle] = useState<string | null>(null);
-  const [path, setPath] = useState<string | null>(null);
+  //   const [path, setPath] = useState<string | null>(null);
   const supabase = createClient();
 
   const handleFileRemove = () => {
@@ -116,9 +115,9 @@ export default function FileUploadComp({ disabled }: { disabled: boolean }) {
       const filePath = `${folderPath}/${file.name}`;
 
       try {
-        if (filePath) {
-          setPath(filePath);
-        }
+        // if (filePath) {
+        //   setPath(filePath);
+        // }
         const { error } = await supabase.storage
           .from("orbit") // Replace with your Supabase Storage bucket name
           .upload(filePath, file);
@@ -153,7 +152,7 @@ export default function FileUploadComp({ disabled }: { disabled: boolean }) {
     <Dialog open={UOpen} onOpenChange={setUOpen}>
       <DialogTrigger asChild>
         <div className="flex w-auto h-full items-center justify-end">
-        <Button
+          <Button
             size="icon"
             className="h-10 w-10 rounded-full bg-[#2c2c2c] hover:bg-[#3c3c3c] border-none"
             disabled={disabled}
@@ -173,7 +172,7 @@ export default function FileUploadComp({ disabled }: { disabled: boolean }) {
               : "Drag or drop your file here or click to upload."}
           </DialogDescription>
           {uploadedFileUrl ? (
-            <SpaceComp onSpaceSelect={(space) => setSpace(space)}/>
+            <SpaceComp onSpaceSelect={(space) => setSpace(space)} />
           ) : (
             <FileUpload
               key={resetKey}

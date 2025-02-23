@@ -1,16 +1,17 @@
-import type React from "react"
-import "./globals.css"
-import { Inter } from "next/font/google"
-import type { Metadata } from "next"
-import { ThemeProvider } from "next-themes"
-import { RoutesContext } from "@/context/route.context"
-import { Toaster } from "@/components/ui/sonner"
+import type React from "react";
+import "./globals.css";
+import { Inter } from "next/font/google";
+import type { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
+import { RoutesContext } from "@/context/route.context";
+import { Toaster } from "@/components/ui/sonner";
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Orbit-Ai - Your Personal Ai with your own Knowledge Vault",
-  description: "Effortlessly store, recall, and connect all your knowledge with Brain",
+  description:
+    "Effortlessly store, recall, and connect all your knowledge with Brain",
   keywords: [
     "Saidev Dhal",
     "Rahul Shah",
@@ -87,12 +88,12 @@ const publicRoutes = ["/"];
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en" suppressContentEditableWarning>
       <body className={inter.className}>
-      <RoutesContext
+        <RoutesContext
           protectedRoutes={protectedRoutes}
           publicRoutes={publicRoutes}
         >
@@ -108,6 +109,5 @@ export default function RootLayout({
         <Toaster />
       </body>
     </html>
-  )
+  );
 }
-

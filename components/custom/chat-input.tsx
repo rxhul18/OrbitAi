@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { ArrowUp, Mic, Plus } from "lucide-react"
-import { Textarea } from "../ui/textarea"
-import { SearchInSpace } from "./sidebar/serach-space"
+import { Button } from "@/components/ui/button";
+import { ArrowUp, Mic, Plus } from "lucide-react";
+import { Textarea } from "../ui/textarea";
+import { SearchInSpace } from "./sidebar/serach-space";
 
 export default function ChatInput() {
   return (
@@ -15,7 +15,7 @@ export default function ChatInput() {
         />
         <div className="w-full flex justify-between p-3">
           <div className="flex gap-3 items-center">
-          <Button
+            <Button
               size="icon"
               className="min-h-10 min-w-10 rounded-full bg-[#2c2c2c] hover:bg-[#3c3c3c] border-none"
             >
@@ -40,6 +40,5 @@ export default function ChatInput() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

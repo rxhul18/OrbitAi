@@ -41,12 +41,20 @@ interface SpaceCompProps {
   defaultSpace?: SpacesInt;
 }
 
-export function SpaceComp({ placeHolder, onSpaceSelect, defaultSpace }: SpaceCompProps) {
+export function SpaceComp({
+  placeHolder,
+  onSpaceSelect,
+  defaultSpace,
+}: SpaceCompProps) {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState<string | null>(defaultSpace?.value || null);
+  const [value, setValue] = React.useState<string | null>(
+    defaultSpace?.value || null,
+  );
   const [search, setSearch] = React.useState("");
   const { user } = useAuth();
-  const [spaces, setSpaces] = React.useState<SpacesInt[]>(defaultSpace ? [defaultSpace] : []);
+  const [spaces, setSpaces] = React.useState<SpacesInt[]>(
+    defaultSpace ? [defaultSpace] : [],
+  );
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   const handleDeleteSpace = async (spaceId: string) => {
@@ -158,7 +166,9 @@ export function SpaceComp({ placeHolder, onSpaceSelect, defaultSpace }: SpaceCom
                             <CheckIcon
                               className={cn(
                                 "ml-auto h-4 w-4",
-                                value === space.value ? "opacity-100" : "opacity-0",
+                                value === space.value
+                                  ? "opacity-100"
+                                  : "opacity-0",
                               )}
                             />
                           </CommandItem>

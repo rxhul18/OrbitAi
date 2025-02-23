@@ -1,11 +1,11 @@
-import { AppSidebar } from "@/components/custom/sidebar/app-sidebar"
-import { SignInNavbar } from "@/components/custom/navbar"
-import { SidebarProvider } from "@/components/ui/sidebar"
-import { cookies } from "next/headers"
+import { AppSidebar } from "@/components/custom/sidebar/app-sidebar";
+import { SignInNavbar } from "@/components/custom/navbar";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { cookies } from "next/headers";
 
 async function Layout({ children }: { children: React.ReactNode }) {
-  const cookieStore = await cookies()
-  const defaultOpen = cookieStore.get("orbit_sidebar_state")?.value === "true"
+  const cookieStore = await cookies();
+  const defaultOpen = cookieStore.get("orbit_sidebar_state")?.value === "true";
 
   return (
     <SidebarProvider defaultOpen={defaultOpen}>
@@ -19,7 +19,7 @@ async function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </div>
     </SidebarProvider>
-  )
+  );
 }
 
 export default Layout;

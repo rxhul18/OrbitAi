@@ -1,70 +1,69 @@
-"use client"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Badge } from "@/components/ui/badge"
-import { ArrowUp } from "lucide-react"
-import OrbitLogo from "@/components/custom/logo"
-import ChatInput from "@/components/custom/chat/chat-input"
-import React, { use, useEffect, useRef, useState } from "react"
-import { Message } from "ai/react"
-import ErrorPage from "next/error"
-import { getChatBySlug } from "@/func/func"
-import OrbitLoadingScreen from "@/components/custom/loading-screen"
-import ChatBox from "@/components/custom/chat/chat-box"
+/* eslint-disable @typescript-eslint/no-unused-vars */
+"use client";
+import { Button } from "@/components/ui/button";
+import { ArrowUp } from "lucide-react";
+import ChatInput from "@/components/custom/chat/chat-input";
+import React, { use, useEffect, useRef, useState } from "react";
+import { Message } from "ai/react";
+import { getChatBySlug } from "@/func/func";
+import OrbitLoadingScreen from "@/components/custom/loading-screen";
+import ChatBox from "@/components/custom/chat/chat-box";
 
-
-export default function ChatInterface({ params }: { params: Promise<{ slug: string }> }) {
-  const [isLoading, setIsLoading] = useState(true)
-  const [isChatValid, setIsChatValid] = useState(false)
-  const [msgs, setMsgs] = useState<Message[]>([])
-  const [showScrollTop, setShowScrollTop] = useState(false)
+export default function ChatInterface({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const [isLoading, setIsLoading] = useState(true);
+  // const [isChatValid, setIsChatValid] = useState(false);
+  const [msgs, setMsgs] = useState<Message[]>([]);
+  // const [showScrollTop, setShowScrollTop] = useState(false);
   const { slug } = use(params);
   const chatID = slug.replace(/^\//, "");
-  const scrollRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     async function fetchChatHistory() {
-      setIsLoading(true)
+      setIsLoading(true);
       try {
-        const isChat = await getChatBySlug(chatID)
-        if (!isChat) return setIsChatValid(false)
+        // const isChat = await getChatBySlug(chatID);
+        // if (!isChat) return setIsChatValid(false);
 
         const response = await fetch("/api/ai/history", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ chatID })
-        })
+          body: JSON.stringify({ chatID }),
+        });
 
-        if (!response.ok) throw new Error("Failed to fetch chat history")
+        if (!response.ok) throw new Error("Failed to fetch chat history");
 
-        const chatHistory = await response.json()
-        setMsgs(chatHistory)
-        setIsChatValid(true)
+        const chatHistory = await response.json();
+        setMsgs(chatHistory);
+        // setIsChatValid(true);
       } catch (error) {
-        console.error(error)
-        setIsChatValid(false)
+        console.error(error);
+        // setIsChatValid(false);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
     }
 
     fetchChatHistory();
-  }, [chatID])
+  }, [chatID]);
 
   const scrollTo = (position: "top" | "bottom") => {
-    if (!scrollRef.current) return
+    if (!scrollRef.current) return;
     scrollRef.current.scrollTo({
       top: position === "top" ? 0 : scrollRef.current.scrollHeight,
-      behavior: "smooth"
-    })
-  }
+      behavior: "smooth",
+    });
+  };
 
   useEffect(() => {
-    scrollTo("bottom")
-  }, [msgs])
+    scrollTo("bottom");
+  }, [msgs]);
 
-  if (isLoading) return <OrbitLoadingScreen />
+  if (isLoading) return <OrbitLoadingScreen />;
 
   return (
     <div className="flex h-full overflow-hidden justify-center items-center flex-col bg-background text-white">
@@ -77,7 +76,7 @@ export default function ChatInterface({ params }: { params: Promise<{ slug: stri
         </p>
       </div>
 
-      {showScrollTop && (
+      {/* {showScrollTop && (
         <Button
           size="icon"
           variant="secondary"
@@ -86,7 +85,7 @@ export default function ChatInterface({ params }: { params: Promise<{ slug: stri
         >
           <ArrowUp className="h-4 w-4" />
         </Button>
-      )}
+      )} */}
     </div>
-  )
+  );
 }

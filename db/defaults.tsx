@@ -1,14 +1,7 @@
 export const MyLinks = {
-  github: "https://git.new/pvOF6aq",
+  github: "https://github.com/rxhul18/OrbitAi",
   twitter: "https://x.com/SaidevDhal",
   instagram: "https://www.instagram.com/dev.unfazed",
   sponsor: "https://github.com/sponsors/SkidGod4444",
 };
 
-export const BrandLinks = {
-  supabase: "https://supabase.com",
-  upstash: "https://upstash.com",
-  vercel: "https://vercel.com",
-  nextjs: "https://nextjs.org",
-  acternity: "https://ui.aceternity.com",
-};

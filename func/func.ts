@@ -358,6 +358,104 @@ const storeResource = async (
   }
 };
 
+const updateResourceContent = async (id: string, content: string) => {
+  const { data, error } = await supabase
+    .from("resources")
+    .update({ content: content })
+    .eq("id", id);
+
+  if (error) {
+    console.error("Error updating resource content:", error);
+  } else {
+    console.log("Resource content updated successfully");
+  }
+};
+
+const updateResourceSpaces = async (id: string, spaces: string | null) => {
+  const { data, error } = await supabase
+    .from("resources")
+    .update({ spaces: spaces })
+    .eq("id", id);
+
+  if (error) {
+    console.error("Error updating resource content:", error);
+  } else {
+    console.log("Resource content updated successfully");
+  }
+};
+
+const getResourceById = async (id: string) => {
+  const { data, error } = await supabase
+    .from("resources")
+    .select("*")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    console.error("Error fetching resource:", error);
+    return null;
+  } else if (data) {
+    console.log("Resource found:", data);
+    return data;
+  } else {
+    return null;
+  }
+};
+
+const getResourcesByUserId = async (userId: string) => {
+  const { data, error } = await supabase
+    .from("resources")
+    .select("*")
+    .eq("user_id", userId);
+
+  if (error) {
+    console.error("Error fetching resources:", error);
+    return null;
+  } else if (data) {
+    console.log("Resources found:", data);
+    return data;
+  } else {
+    return null;
+  }
+};
+
+const getResourcesByType = async (
+  userId: string,
+  type = "html | txt | pdf | csv",
+) => {
+  const { data, error } = await supabase
+    .from("resources")
+    .select("*")
+    .eq("user_id", userId)
+    .eq("type", type);
+  if (error) {
+    console.error("Error fetching resources:", error);
+    return null;
+  } else if (data) {
+    console.log("Resources found:", data);
+    return data;
+  } else {
+    return null;
+  }
+};
+
+const deleteResource = async (id: string) => {
+  const { data, error } = await supabase
+    .from("resources")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    console.error("Error deleting resource data:", error);
+  } else {
+    console.log("Resource data deleted successfully");
+  }
+};
+
+// ______________________________________________________________________________________________________________________
+// UPLOADS FUNCTIONS
+// ______________________________________________________________________________________________________________________
+
 
 export {
     storeUser,
@@ -379,5 +477,11 @@ export {
     getSpaceById,
     getSpaceByName,
     getSpacesByUserId,
-    storeResource
+    storeResource,
+    updateResourceContent,
+    updateResourceSpaces,
+    getResourceById,
+    getResourcesByUserId,
+    getResourcesByType,
+    deleteResource
 }

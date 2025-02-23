@@ -33,7 +33,7 @@ export default function ChatInterface({ params }: PageProps) {
         const isChat = await getChatBySlug(chatID)
         if (!isChat) return setIsChatValid(false)
 
-        const response = await fetch("/api/history", {
+        const response = await fetch("/api/ai/history", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ chatID })
@@ -72,7 +72,7 @@ export default function ChatInterface({ params }: PageProps) {
     scrollTo("bottom")
   }, [msgs])
 
-  // if (isLoading) return <OrbitLoadingScreen />
+  if (isLoading) return <OrbitLoadingScreen />
 
   return (
     <div className="flex h-full overflow-hidden justify-center items-center flex-col bg-background text-white">
@@ -83,7 +83,7 @@ export default function ChatInterface({ params }: PageProps) {
               <div className={`max-w-[80%] ${message.role === "user" ? "order-1" : "order-2"}`}>
                 {message.role === "assistant" && (
                   <div className="mb-2 flex items-center gap-2">
-                    <OrbitLogo />
+                    <OrbitLogo size={30}/>
                     <span className="font-semibold">Orbit Ai</span>
                     <Badge variant="secondary" className="h-5 bg-zinc-800">Bot</Badge>
                   </div>

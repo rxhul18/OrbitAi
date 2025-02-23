@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import * as React from "react";
@@ -9,13 +10,14 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
-import { Github, History, Instagram, Twitter } from "lucide-react";
+import { Github, History, Twitter } from "lucide-react";
 import Link from "next/link";
 import { MyLinks } from "@/db/defaults";
 import { useAuth } from "@/context/auth.context";
 import { toast } from "sonner";
 // import { getChatsByUserId } from "@/db/func";
 import { Input } from "@/components/ui/input";
+import { getChatsByUserId } from "@/func/func";
 
 interface HistoryInt {
   slug: string;
@@ -36,14 +38,14 @@ export default function SearchHistory() {
       setIsLoading(true);
       const fetchSpaces = async () => {
         try {
-        //   const historyData = await getChatsByUserId(user.id);
-        //   if (historyData) {
-        //     const formattedSpaces = historyData.map((chat: any) => ({
-        //       slug: chat.slug,
-        //       name: chat.title,
-        //     }));
-        //     setHistory(formattedSpaces);
-        //   }
+          const historyData = await getChatsByUserId(user.id);
+          if (historyData) {
+            const formattedSpaces = historyData.map((chat: any) => ({
+              slug: chat.slug,
+              name: chat.title,
+            }));
+            setHistory(formattedSpaces);
+          }
         } catch (error) {
           console.error("Error fetching spaces:", error);
           toast.error("Failed to fetch spaces. Please try again.");
@@ -75,10 +77,7 @@ export default function SearchHistory() {
           placeholder="Search history..."
           className="pr-12 w-full relative z-0 border rounded-xl cursor-pointer bg-secondary"
           readOnly
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          onClick={(event: React.MouseEvent<HTMLInputElement>) =>
-            setOpen(!open)
-          }
+          onClick={() => setOpen(!open)}
         />
         <kbd className="absolute right-2 pointer-events-none inline-flex h-5 items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
           <span className="text-xs">⌘</span>K
@@ -114,12 +113,6 @@ export default function SearchHistory() {
             <Link href={MyLinks.github}>
               <CommandItem className="rounded-xl cursor-pointer">
                 <Github className="size-5 mr-2" /> GitHub
-              </CommandItem>
-            </Link>
-
-            <Link href={MyLinks.instagram}>
-              <CommandItem className="rounded-xl cursor-pointer">
-                <Instagram className="size-5 mr-2" /> Instagram
               </CommandItem>
             </Link>
 

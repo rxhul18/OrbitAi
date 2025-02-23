@@ -47,7 +47,7 @@ export default function ChatInput({
   const { messages, handleInputChange, handleSubmit, input, isLoading } =
     useChat({
       api: "/api/ai/stream",
-      body: { chatId, namespace: '7f622aa1-5c48-40b0-ba13-ed4c0f451d39' },
+      body: { chatId, namespace: thisSpace },
       initialMessages: history,
     });
     console.log("spaceXXX:", thisSpace)

@@ -7,10 +7,13 @@ import { getUserCurrenChat } from "@/func/func";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ShinyText from "@/components/magicui/shiny-text";
+import ChatBox from "@/components/custom/chat/chat-box";
+import { Message } from "ai/react"
 
 export default function Page() {
   const { user } = useAuth();
   const router = useRouter();
+  const [msgs, setMsgs] = useState<Message[]>([])
   const uid = user?.id;
   const [chatID, setChatID] = useState<string | null>(null);
   const [isMsg, setMsg] = useState(false);
@@ -30,11 +33,7 @@ export default function Page() {
 
   useEffect(() => {
     if (chatID && isMsg) {
-      const timer = setTimeout(() => {
-        router.push(`/c/${chatID}`);
-      }, 500); // Delay redirect by 500ms
-  
-      return () => clearTimeout(timer); // Cleanup in case component unmounts
+      window.history.replaceState(null, "", `/c/${chatID}`);
     }
   }, [chatID, isMsg, router]);
 
@@ -45,10 +44,10 @@ export default function Page() {
   return (
     <div className="h-fit p-4 md:p-6">
       <div className="mx-auto max-w-5xl space-y-6 md:mt-35 lg:mt-40 mt-30">
-        <ShinyText text="How can i help you dear?" disabled={false} speed={5} className="w-full text-center text-6xl py-16 font-serif" />
-        <ChatInput chatId={chatID} onHasMessagesChange={setMsg}/>
+      <ChatBox msgs={msgs} />
+        <ChatInput chatId={chatID} onHasMessagesChange={setMsg} onMessageResponse={setMsgs} />
         {/* Filter tabs */}
-        <DataViwer />
+        {msgs.length <= 0 && <DataViwer />}
       </div>
     </div>
   )

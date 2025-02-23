@@ -6,24 +6,21 @@ import { Badge } from "@/components/ui/badge"
 import { ArrowUp } from "lucide-react"
 import OrbitLogo from "@/components/custom/logo"
 import ChatInput from "@/components/custom/chat/chat-input"
-import React, { useEffect, useRef, useState } from "react"
+import React, { use, useEffect, useRef, useState } from "react"
 import { Message } from "ai/react"
 import ErrorPage from "next/error"
 import { getChatBySlug } from "@/func/func"
 import OrbitLoadingScreen from "@/components/custom/loading-screen"
+import ChatBox from "@/components/custom/chat/chat-box"
 
-interface PageProps {
-  params: {
-    slug: string
-  }
-}
 
-export default function ChatInterface({ params }: PageProps) {
+export default function ChatInterface({ params }: { params: Promise<{ slug: string }> }) {
   const [isLoading, setIsLoading] = useState(true)
   const [isChatValid, setIsChatValid] = useState(false)
   const [msgs, setMsgs] = useState<Message[]>([])
   const [showScrollTop, setShowScrollTop] = useState(false)
-  const chatID = params.slug.replace(/^\//, "")
+  const { slug } = use(params);
+  const chatID = slug.replace(/^\//, "");
   const scrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -52,7 +49,7 @@ export default function ChatInterface({ params }: PageProps) {
       }
     }
 
-    fetchChatHistory()
+    fetchChatHistory();
   }, [chatID])
 
   const scrollTo = (position: "top" | "bottom") => {
@@ -75,27 +72,8 @@ export default function ChatInterface({ params }: PageProps) {
   if (isLoading) return <OrbitLoadingScreen />
 
   return (
-    <div className="flex h-full overflow-hidden justify-center items-center flex-col bg-background text-white">
-      <ScrollArea ref={scrollRef} className="flex-1 max-w-5xl py-6" onScroll={handleScroll}>
-        <div className="space-y-4">
-          {msgs.map((message) => (
-            <div key={message.id} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
-              <div className={`max-w-[80%] ${message.role === "user" ? "order-1" : "order-2"}`}>
-                {message.role === "assistant" && (
-                  <div className="mb-2 flex items-center gap-2">
-                    <OrbitLogo size={30}/>
-                    <span className="font-semibold">Orbit Ai</span>
-                    <Badge variant="secondary" className="h-5 bg-zinc-800">Bot</Badge>
-                  </div>
-                )}
-                <Card className={`p-3 ${message.role === "user" ? "bg-zinc-800" : "bg-zinc-800/50"}`}>
-                  <p className="text-sm">{message.content}</p>
-                </Card>
-              </div>
-            </div>
-          ))}
-        </div>
-      </ScrollArea>
+    <div className="flex h-screen overflow-hidden justify-center items-center flex-col bg-background text-white">
+      <ChatBox msgs={msgs} />
 
       <div className="p-4 w-full">
         <ChatInput chatId={chatID} history={msgs} onMessageResponse={setMsgs} />

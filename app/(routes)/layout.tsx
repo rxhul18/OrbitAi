@@ -13,7 +13,7 @@ async function Layout({ children }: { children: React.ReactNode }) {
       <div className="w-full">
         <SignInNavbar />
         <div className="w-full h-full flex justify-center">
-          <div className="container border border-dashed border-t-0 bg-background h-full">
+          <div className="container border border-dashed border-t-0 bg-background">
             {children}
           </div>
         </div>

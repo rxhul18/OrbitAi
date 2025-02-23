@@ -65,7 +65,13 @@ export default function ChatInput({
           onHasMessagesChange(true);
         }
         if(onMessageResponse){
-          onMessageResponse(messages);
+          if(messages.length < 2) {
+            setTimeout(() => {
+              onMessageResponse(messages);
+            }, 1350);
+          } else {
+            onMessageResponse(messages);
+          }
         }
       }
     }, [messages, uid, chatId, onHasMessagesChange, onMessageResponse]);
@@ -73,7 +79,7 @@ export default function ChatInput({
   return (
     <form
                 onSubmit={handleSubmit}
-                 className="w-full pb-4 flex items-center justify-center">
+                 className="w-full pb-4 flex items-center justify-center overflow-hidden">
       <div className="relative w-full max-w-5xl bg-[#1c1c1c] rounded-md">
         <Textarea
         value={input}

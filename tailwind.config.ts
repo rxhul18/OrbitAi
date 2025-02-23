@@ -88,6 +88,10 @@ const config: Config = {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		keyframes: {
+			shine: {
+				          '0%': { 'background-position': '100%' },
+				          '100%': { 'background-position': '-100%' },
+				        },
   			marquee: {
   				from: {
   					transform: 'translateX(0)'
@@ -119,6 +123,7 @@ const config: Config = {
   			}
   		},
   		animation: {
+			shine: 'shine 5s linear infinite',
   			marquee: 'marquee var(--duration) infinite linear',
   			'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
   			meteor: 'meteor 5s linear infinite'

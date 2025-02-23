@@ -6,6 +6,7 @@ import { useAuth } from "@/context/auth.context";
 import { getUserCurrenChat } from "@/func/func";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import ShinyText from "@/components/magicui/shiny-text";
 
 export default function Page() {
   const { user } = useAuth();
@@ -29,18 +30,22 @@ export default function Page() {
 
   useEffect(() => {
     if (chatID && isMsg) {
-      router.push(`/c/${chatID}`);
+      const timer = setTimeout(() => {
+        router.push(`/c/${chatID}`);
+      }, 500); // Delay redirect by 500ms
+  
+      return () => clearTimeout(timer); // Cleanup in case component unmounts
     }
   }, [chatID, isMsg, router]);
 
   // Conditional rendering based on chatID
   if (!chatID) {
-    return <OrbitLoadingScreen />;
+    return null;
   }
   return (
     <div className="h-fit p-4 md:p-6">
-      <div className="mx-auto max-w-5xl space-y-6 mt-48">
-        <h2 className="w-full text-center text-6xl py-16 font-serif">How can i help you dear?</h2>
+      <div className="mx-auto max-w-5xl space-y-6 md:mt-35 lg:mt-40 mt-30">
+        <ShinyText text="How can i help you dear?" disabled={false} speed={5} className="w-full text-center text-6xl py-16 font-serif" />
         <ChatInput chatId={chatID} onHasMessagesChange={setMsg}/>
         {/* Filter tabs */}
         <DataViwer />

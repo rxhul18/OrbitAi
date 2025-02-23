@@ -14,7 +14,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       const textarea = textareaRef.current;
       if (textarea) {
         const maxHeight = 80; // Adjust this value as needed
-        const minHeight = 30; // Default height
+        const minHeight = 40; // Default height
 
         // Reset the height to minHeight if there's no content
         if (textarea.value.trim() === "" || null || undefined) {

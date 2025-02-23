@@ -111,7 +111,7 @@ export function SpaceComp({ placeHolder, onSpaceSelect, defaultSpace }: SpaceCom
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="min-w-full bg-transparent text-muted-foreground justify-between rounded-xl"
+          className="w-full bg-transparent text-muted-foreground justify-between rounded-xl"
         >
           {value !== null && spaces.find((space) => space.value === value)
             ? spaces.find((space) => space.value === value)?.label

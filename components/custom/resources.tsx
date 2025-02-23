@@ -37,7 +37,12 @@ const filterButtons: FilterButton[] = [
         id: "links",
         label: "Links",
         icon: <Link2Icon className="h-4 w-4" />,
-    },
+    }
+    // {
+    //     id: "spaces",
+    //     label: "Spaces",
+    //     icon: <FileType className="h-4 w-4" />,
+    // }
 ]
 
 // Add these dummy data arrays after the filterButtons array
@@ -81,9 +86,18 @@ const linksData = [
     { id: 5, title: "Learning Resources", url: "https://example.com/learn" },
 ];
 
+
+// const spaces = [
+//     { id: 1, title: "Awesome Article", url: "https://example.com/article" },
+//     { id: 2, title: "Useful Tool", url: "https://example.com/tool" },
+//     { id: 3, title: "Tech Blog", url: "https://example.com/tech-blog" },
+//     { id: 4, title: "Design Inspiration", url: "https://example.com/design" },
+//     { id: 5, title: "Learning Resources", url: "https://example.com/learn" },
+// ];
+
 export default function DataViwer() {
 
-  const [activeFilter, setActiveFilter] = useState("notes")
+    const [activeFilter, setActiveFilter] = useState("notes")
 
     return (
         <div>
@@ -94,7 +108,7 @@ export default function DataViwer() {
                         variant={`${activeFilter === button.id ? "default" : "secondary"}`}
                         // variant="default"
                         size="sm"
-                        className={activeFilter === button.id ? "" :" opacity-80"}
+                        className={activeFilter === button.id ? "" : " opacity-80"}
                         onClick={() => setActiveFilter(button.id)}
                     >
                         {button.icon}
@@ -104,7 +118,7 @@ export default function DataViwer() {
             </div>
 
             {/* Content area */}
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mt-4">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mt-4 w-full">
                 {activeFilter === "notes" &&
                     notesData.map((note) => (
                         <Card key={note.id} className="overflow-hidden">
@@ -184,6 +198,27 @@ export default function DataViwer() {
                             </CardContent>
                         </Card>
                     ))}
+                {/* {activeFilter === "spaces" &&
+                    spaces.map((space) => (
+                        <Card key={space.id} className="overflow-hidden">
+                            <CardHeader className="p-4">
+                                <CardTitle className="text-lg flex items-center gap-2">
+                                    <Link2Icon className="h-5 w-5 text-purple-500" />
+                                    {space.title}
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="p-4 pt-0">
+                                <a
+                                    href={space.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-sm text-blue-500 hover:underline truncate block"
+                                >
+                                    {space.url}
+                                </a>
+                            </CardContent>
+                        </Card>
+                    ))} */}
             </div>
         </div>
     )

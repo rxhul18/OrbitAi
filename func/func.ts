@@ -456,6 +456,19 @@ const deleteResource = async (id: string) => {
 // UPLOADS FUNCTIONS
 // ______________________________________________________________________________________________________________________
 
+const getFileUrl = async (filepath: string) => {
+  const { data } = await supabase.storage
+    .from("orbit")
+    .createSignedUrl(filepath, 604800);
+
+  if (data) {
+    console.log("File url fetched successfully");
+    return data.signedUrl;
+  } else {
+    console.error("Error fetching file url");
+    return null;
+  }
+};
 
 export {
     storeUser,
@@ -483,5 +496,6 @@ export {
     getResourceById,
     getResourcesByUserId,
     getResourcesByType,
-    deleteResource
+    deleteResource,
+    getFileUrl
 }

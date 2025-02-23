@@ -79,7 +79,7 @@ export default function Home() {
 
             <h2 className="text-4xl md:text-[2.7rem] font-serif mb-3 text-[#334155] dark:text-white font-extralight tracking-tight">Works like your brain. Does more.</h2>
 
-            <div className="flex relative flex-col md:flex-row-reverse select-none rounded-3xl bg-black lg:max-w-[70%] text-white mx-auto mt-16">
+            {/* <div className="flex relative flex-col md:flex-row-reverse select-none rounded-3xl bg-black lg:max-w-[70%] text-white mx-auto mt-16">
               <div className="min-w-[60%] relative flex items-center justify-center">
                 <Image
                   src={chormeExtension}
@@ -93,7 +93,7 @@ export default function Home() {
                 <p className="font-light text-white/80">Come across something worth keeping? Save it instantly with the Brain Chrome extension. Simplify how you manage your online content with just one click.</p>
                 <Badge className="absolute bottom-3 right-3 md:bottom-8 md:left-10 w-fit mt-3 text-black" variant={"secondary"}>Comming soon</Badge>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <ClickSpark />

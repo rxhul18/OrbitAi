@@ -7,6 +7,7 @@ import { getChatBySlug, storeChat } from "@/func/func";
 import { Message, useChat } from "ai/react";
 import { ArrowUp, Mic, Plus } from "lucide-react"
 import { useEffect } from "react";
+import FileUploadComp from "../file-uploader";
 
 export default function ChatInput({
   chatId,
@@ -88,12 +89,7 @@ export default function ChatInput({
           className="w-full bg-[#1c1c1c] border-none text-white resize-none placeholder:text-gray-400 p-3  rounded-2xl focus-visible:ring-0 focus-visible:ring-offset-0"
         />
         <div className="w-full flex justify-between p-3">
-          <Button
-            size="icon"
-            className="h-10 w-10 rounded-full bg-[#2c2c2c] hover:bg-[#3c3c3c] border-none"
-          >
-            <Plus className="h-8 w-8 text-gray-400" />
-          </Button>
+          <FileUploadComp disabled={isLoading}/>
           <div className="gap-2 flex">
             <Button
               size="icon"

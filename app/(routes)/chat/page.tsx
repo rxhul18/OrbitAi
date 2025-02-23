@@ -45,7 +45,7 @@ export default function Page() {
     <div className="flex h-auto overflow-hidden justify-center items-center flex-col bg-background text-white">
       <ChatBox msgs={msgs} />
       <div className="p-4 w-full px-auto">
-        <ChatInput chatId={chatID} history={msgs} onMessageResponse={setMsgs} />
+        <ChatInput chatId={chatID} history={msgs} onMessageResponse={setMsgs} onHasMessagesChange={setMsg} />
         {msgs.length <= 0 ? <DataViwer /> : <p className="mt-2 text-center text-xs text-zinc-500">
           Orbit Ai can make mistakes rarely. Check important info.
         </p>}

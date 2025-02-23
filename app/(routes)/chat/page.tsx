@@ -40,7 +40,7 @@ export default function Page() {
     return null;
   }
   return (
-    <div className="flex h-auto overflow-hidden justify-center items-center flex-col bg-background text-white">
+    <div className="flex h-full overflow-hidden justify-center items-center flex-col bg-background text-white">
       {isMsg ? <ChatBox msgs={msgs} /> : <ShinyText text="How can I help you?" disabled={false} speed={5} className="text-4xl md:text-5xl font-serif mb-3 font-extralight tracking-tight mt-20" />}
       <div className="p-4 w-full px-auto">
         <ChatInput chatId={chatID} history={msgs} onMessageResponse={setMsgs} onHasMessagesChange={setMsg} />

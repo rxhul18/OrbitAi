@@ -1,11 +1,8 @@
-
 import Image from "next/image"
 import storeNotes from "./images/store-all-notes-c.webp"
 import sementicImage from "./images/semantic-search.webp"
 import imageTagging from "./images/image-tagging-c.webp"
 import reminderImage from "./images/reminders-c.webp"
-import brainAction from './images/brain-actions.webp'
-import chormeExtension from './images/extension-c.webp'
 import { Badge } from "@/components/ui/badge"
 import ClickSpark from "@/components/custom/click-sparke"
 import Footer from "@/components/custom/footer"
@@ -33,11 +30,6 @@ const content = [{
   title: "Create Reminders",
   description: "We tend to save things and forget. Auto-create reminders on Brain so you don't.",
   image: reminderImage,
-  commingSoon: true
-}, {
-  title: "Brain Actions",
-  description: "Need to update your notes on the fly? Just tell Brain and it will do them for you.",
-  image: brainAction,
   commingSoon: true
 }
 ]
@@ -71,29 +63,12 @@ export default function Home() {
                   <div className="w-auto px-10 py-10 md:py-16 text-start ">
                     <h2 className="font-serif text-xl font-thin mb-3">{item.title}</h2>
                     <p className="font-light text-white/90">{item.description}</p>
-                    {item.commingSoon && <Badge className="absolute bottom-3 right-3 md:bottom-8 md:left-10 w-fit mt-3 text-black" variant={"secondary"}>Comming soon</Badge>}
+                    {item.commingSoon && <Badge className="absolute bottom-3 right-3 md:bottom-8 md:left-10 w-fit mt-3 text-black" variant={"default"}>Comming soon</Badge>}
                   </div>
                 </div>
               </>
             ))}
 
-            <h2 className="text-4xl md:text-[2.7rem] font-serif mb-3 text-[#334155] dark:text-white font-extralight tracking-tight">Works like your brain. Does more.</h2>
-
-            {/* <div className="flex relative flex-col md:flex-row-reverse select-none rounded-3xl bg-black lg:max-w-[70%] text-white mx-auto mt-16">
-              <div className="min-w-[60%] relative flex items-center justify-center">
-                <Image
-                  src={chormeExtension}
-                  alt="Sample Image"
-                  className="w-full h-full object-cover rounded-t-3xl md:rounded-r-3xl"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black from-1% to-transparent to-10% md:bg-none"></div>
-              </div>
-              <div className="w-auto px-10 py-10 md:py-16 text-start ">
-                <h2 className="font-serif text-xl font-thin mb-3">Chrome Extension</h2>
-                <p className="font-light text-white/80">Come across something worth keeping? Save it instantly with the Brain Chrome extension. Simplify how you manage your online content with just one click.</p>
-                <Badge className="absolute bottom-3 right-3 md:bottom-8 md:left-10 w-fit mt-3 text-black" variant={"secondary"}>Comming soon</Badge>
-              </div>
-            </div> */}
           </div>
 
           <ClickSpark />

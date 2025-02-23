@@ -6,7 +6,7 @@ import { Globe } from '../magicui/globe'
 export default function Hero() {
     return (
         <section className="relative border border-dashed border-y-0 container items-center h-[80vh] mx-auto px-4 text-center py-16 md:py-20 md:pb-16">
-            <Meteors number={22} />
+            <Meteors number={15} />
             <h1 className="text-4xl md:text-5xl font-serif mb-3 text-primary/80 font-extralight tracking-tight">Your personal knowledge vault.</h1>
             <p className="text-xl text-gray-600 mb-10">
                 Effortlessly store, recall, and connect all your knowledge with Brain

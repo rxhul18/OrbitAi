@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
@@ -23,11 +24,11 @@ const MarkdownContent = ({ content }: { content: string }) => (
         const match = /language-(\w+)/.exec(className || "");
         return match ? (
           <SyntaxHighlighter
-            style={vscDarkPlus}
+            style={vscDarkPlus as any} // Type assertion to bypass type error
             language={match[1]}
             PreTag="div"
             className="rounded-md my-2"
-            {...props}
+            {...(props as any)} // Type assertion to bypass type error
           >
             {String(children).replace(/\n$/, "")}
           </SyntaxHighlighter>

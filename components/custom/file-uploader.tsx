@@ -112,12 +112,14 @@ export default function FileUploadComp({ disabled }: { disabled: boolean }) {
         return;
       }
 
-      const filePath = `${folderPath}/${file.name}`;
+      const generateRandomSixDigit = () => {
+        return Math.floor(100000 + Math.random() * 900000).toString();
+      };
+      const randoName = generateRandomSixDigit();
+      const filePath = `${folderPath}/${randoName}`;
+      console.log("UPLOADED PATH: ", filePath);
 
       try {
-        // if (filePath) {
-        //   setPath(filePath);
-        // }
         const { error } = await supabase.storage
           .from("orbit") // Replace with your Supabase Storage bucket name
           .upload(filePath, file);

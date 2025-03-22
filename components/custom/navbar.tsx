@@ -26,7 +26,7 @@ export function SignInNavbar() {
   return (
     <div className="border border-dashed border-l-0 sticky z-50 top-0">
       <header className=" bg-background backdrop-blur-sm">
-        <nav className="container mx-auto px-4 h-20 flex items-center justify-between border border-dashed border-y-0">
+        <nav className="container mx-auto px-4 h-[74px] flex items-center justify-between border border-dashed border-y-0">
           <div className="flex items-center gap-6">
             <SidebarTrigger variant={"outline"} />
 

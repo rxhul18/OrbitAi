@@ -5,7 +5,6 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { RoutesContext } from "@/context/route.context";
 import { Toaster } from "@/components/ui/sonner";
-import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -107,7 +106,6 @@ export default function RootLayout({
             {children}
           </ThemeProvider>
         </RoutesContext>
-        <Analytics />
         <Toaster />
       </body>
     </html>
